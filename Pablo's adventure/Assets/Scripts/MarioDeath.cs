@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class MarioDeath : MonoBehaviour
 {
-    public SpriteRenderer spriteR;
-
-    public Sprite[] sprites;
+    public SpriteRenderer deadSprite;
 
     public void Start()
     {
-        //sprites = Resources.LoadAll<sprite>(spriteNames);
+        //deadSprite = GetComponent<SpriteRenderer>();
+        //deadSprite.enabled = false;
     }
-
     public void DeathPlay()
     {
-        //sprite.sprite = Death;
-        Debug.Log("Hi");
+        deadSprite.enabled = true;
+        //gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 }

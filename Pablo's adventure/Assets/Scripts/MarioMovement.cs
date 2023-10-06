@@ -12,6 +12,10 @@ public class MarioMovement : MonoBehaviour
 
     public bool isSprinting;
 
+    public GameObject groundCheck;
+
+    public LayerMask groundLayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,10 +73,19 @@ public class MarioMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (IsGrounded())
         {
-            transform.Translate(Vector2.up * jumpHeight * Time.deltaTime);
-            animate.Play("Idle");
+            if (Input.GetKey(KeyCode.Space))
+            {
+                transform.Translate(Vector2.up * jumpHeight * Time.deltaTime);
+                animate.Play("Idle");
+            }
         }
+        
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.transform.position, 0.02f, groundLayer);
     }
 }
